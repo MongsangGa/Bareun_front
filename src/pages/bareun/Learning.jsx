@@ -25,6 +25,7 @@ const Learning = () => {
   const [data, setData] = useState(null);
   const [clickedItem, setClickedItem] = useState(null);
 
+  // fetch로 파일 가져온 후 data에 저장
   useEffect(() => {
     fetch('/modified_output_daily_1st.json')
       .then(response => response.json())
@@ -50,13 +51,13 @@ const Learning = () => {
               <p><strong>A:</strong> {item.user_utterance}</p>
               <p><strong>B:</strong> {item.system_utterance}</p>
               {clickedItem === item && (
-                <GoogleTTS texts={[item.user_utterance, item.system_utterance].filter(Boolean)} />
+                <GoogleTTS texts={[item.user_utterance, item.system_utterance]} />
               )}
             </ListItem>
           ))}
         </List>
       ) : (
-        <p>Loading...</p>
+        <p>로딩중...</p>
       )}
     </Container>
   );
